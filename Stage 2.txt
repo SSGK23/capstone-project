@@ -1,0 +1,11 @@
+#1
+select Customer_id,age,job from Cust_bank
+order by age asc; 
+
+#2
+select * from Cust_bank
+Where housing = "no" and loan = "no";
+
+#3(need to join bank details and campaign details)
+select * from Cust_bank
+Where credit = "yes" and capaign >=2;
