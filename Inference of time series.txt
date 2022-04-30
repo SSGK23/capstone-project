@@ -1,0 +1,59 @@
+# Order of the AR term (p) 
+
+The next step is to determine whether the model requires any AR terms.
+The appropriate number of AR terms will be determined by analysing the Partial Autocorrelation (PACF) plot.
+Partial autocorrelation can be considered of as the correlation between the series and its lag after the contributions from intermediate lags are removed.
+ 
+That is, suppose, if Y_t is the current series and Y_t-1 is the lag 1 of Y, then the partial autocorrelation of lag 3 (Y_t-3) is the coefficient  α3  of Y_t-3 in the above equation.
+Now, we should find the number of AR terms. Any autocorrelation in a stationarized series can be rectified by adding enough AR terms. So, we initially take the order of AR term to be equal to as many lags that crosses the significance limit in the PACF plot.
+
+
+# Order of the MA term (q) 
+
+We will examine the ACF plot for the number of MA terms in the same way that we examined the PACF plot for the number of AR terms. Technically, an MA term is the error of the lagged forecast.
+The ACF specifies the number of MA periods required to remove any autocorrelation from the stationarized series.
+Let's have a look at the autocorrelation plot of the differenced series.
+
+
+
+# ARIMA Model 
+
+We have now found the values of p, d, and q. We have everything that is required to match the ARIMA model. The statsmodels package's ARIMA() implementation will be used.
+
+
+# Optimal ARIMA model using Out-of-Time Cross validation 
+
+Out-of-Time cross-validation involves moving backwards in time and forecasting into the future to the number of steps we took back. The forecast is then compared to the actuals.
+To do this, we shall divide the time series into two contiguous portions in a fair proportion based on the time frequency of the series.
+
+
+# Accuracy Metrics for Time Series Forecast 
+
+The commonly used accuracy metrics to judge forecasts are:
+
+Mean Absolute Percentage Error (MAPE)
+Mean Error (ME)
+Mean Absolute Error (MAE)
+Mean Percentage Error (MPE)
+Root Mean Squared Error (RMSE)
+Lag 1 Autocorrelation of Error (ACF1)
+Correlation between the Actual and the Forecast (corr)
+Min-Max Error (minmax)
+
+
+Typically, we will use three accuracy metrices:-
+
+MAPE
+Correlation and
+Min-Max Error
+can be used. The above three are percentage errors that vary between 0 and 1. That way, we can judge how good is the forecast irrespective of the scale of the series.
+
+
+# Auto Arima Forecasting in Python 
+
+
+In Python, the pmdarima package provides auto_arima() function which can be used to automate the process of ARIMA Forecasting in Python.
+
+auto_arima() uses a stepwise approach to search multiple combinations of p,d,q parameters and chooses the best model that has the least AIC.
+
+We need to install the pmdarima package first.
